@@ -8,14 +8,19 @@
 def area(w, h):
     """Return the area of a rectangle that is w wide and h tall.
     area(3, 4) should be 12."""
-    return 0
+    return w * h
 
 
 def longest(a, b):
     """Return whichever word is longer, a or b.
     longest("cat", "walrus") should be "walrus".
     If they are the same length, return a."""
-    return ""
+    if len(a) > len(b):
+        return a
+    elif len(a) < len(b):
+        return b
+    else:
+        return a
 
 
 # --- Ryan's checker. Do not edit below this line. ---

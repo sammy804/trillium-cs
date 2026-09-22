@@ -6,8 +6,8 @@
 
 stars = 0
 
-for i in range(1, 7):
-    print("*")
+for i in range(7):
+    print(stars)
     stars = stars + 1
 
 

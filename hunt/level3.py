@@ -6,7 +6,7 @@
 
 # --- settings ---
 
-crate_count = 3
+crate_count = 60
 
 # --- end of settings ---
 

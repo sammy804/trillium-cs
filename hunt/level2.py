@@ -7,7 +7,7 @@
 name = "hunter"
 tries = 3
 
-if tries > 0
+if tries > 0:
     print(name, "has", tries, "tries left")
 else:
     print(name, "is out of tries")
