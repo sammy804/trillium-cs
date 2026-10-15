@@ -1,3 +1,4 @@
+'''
 class Node:
     def __init__(self,key):
         self.key = key
@@ -10,18 +11,30 @@ class Graph:
     def __init__(self):
         self.graph = {}
     def add_node(self, node):
-        self.graph[node.key] = node
+        self.graph[node] = node.neighbors
     def bfs(self, start):
         visited = []
         queue = []
         queue.append(start)
         visited.append(start)
-        for i in queue:
+        while queue:
             current = queue.pop(0)
+            print(current.key, end = ' ')
             for neighbor in current.neighbors:
                 if neighbor not in visited:
-                    print(neighbor.key)
                     queue.append(neighbor)
+                    visited.append(neighbor)
+    def dfs(self, start):
+        visited = []
+        stack = []
+        stack.append(start)
+        visited.append(start)
+        while stack:
+            current = stack.pop()
+            print(current.key, end = ' ')
+            for neighbor in current.neighbors:
+                if neighbor not in visited:
+                    stack.append(neighbor)
                     visited.append(neighbor)
             
 
@@ -51,3 +64,6 @@ graph.add_node(node6)
 graph.add_node(node7)
 graph.add_node(node8)
 graph.bfs(node1)
+print()
+graph.dfs(node1)
+'''
