@@ -6,6 +6,15 @@
     <div id="box">
       Click to start
     </div>
+    <script>
+      var square = document.getElementById("box")
+      console.log(square)
+      function handleClick() {
+        console.log("clicked")
+        square.textContent = 'Clicked!'
+      }
+      square.addEventListener("click", handleClick)
+    </script>
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -13,8 +22,15 @@
       #box {
         width: 80%;
         height: 750px;
-        background-color: red;
+        background-color: darkred;
         text-align: center;
+        text-transform: capitalize;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+        font-size: 35px;
       }
     </style>
   </head>
