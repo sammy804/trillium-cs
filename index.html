@@ -13,7 +13,7 @@
       var square = document.getElementById("box")
       console.log(square)
       function handleClick() {
-        if (state = 'ready'){
+        if (state = 'result'){
           startRound()
         }
         if (state = 'go'){
@@ -21,7 +21,7 @@
           square.textContent = `Your time: ${time}\n Click to go again!`
           state = 'result'
         }
-        if (state = 'result'){
+        if (state = 'ready'){
           startRound()
         }
       }
