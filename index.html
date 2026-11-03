@@ -9,19 +9,32 @@
     <script>
       var time = 0
       var green = 0
+      var timeout = 0
       var state = 'ready'
+      var times = []
       var square = document.getElementById("box")
+      var round = document.getElementById("box")
       console.log(square)
       function handleClick() {
-        if (state = 'result'){
+        if (state === 'waiting'){
+          clearTimeout(timeout)
+          state = 'tooSoon'
+          square.textContent = 'Too soon!'
+          square.style.backgroundColor = 'red'
+        }
+        else if (state === 'result'){
           startRound()
         }
-        if (state = 'go'){
-          time = Math.round(performance.now() - green)
-          square.textContent = `Your time: ${time}\n Click to go again!`
-          state = 'result'
+        else if (state === 'tooSoon'){
+          startRound()
         }
-        if (state = 'ready'){
+        else if (state === 'go'){
+          time = Math.round(performance.now() - green)
+          square.textContent = `Your time: ${time} Click to go again!`
+          state = 'result'
+          times.push(time)
+        }
+        else if (state === 'ready'){
           startRound()
         }
       }
@@ -31,7 +44,7 @@
         square.style.backgroundColor = 'yellow'
         var delay = Math.random() * (3000) + 2000
         console.log(delay)
-        setTimeout(goGreen, delay)
+        timeout = setTimeout(goGreen, delay)
       }
       function goGreen() {
         state = 'go'
@@ -40,6 +53,7 @@
         green = performance.now()
       }
       square.addEventListener("click", handleClick)
+      round.textContent = `Round ${times.length} of 5`
     </script>
     <style>
       body {
@@ -48,7 +62,7 @@
       #box {
         width: 80%;
         height: 750px;
-        background-color: darkred;
+        background-color: rgb(255, 0, 225);
         text-align: center;
         text-transform: capitalize;
         position: fixed;
