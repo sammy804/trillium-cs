@@ -31,12 +31,27 @@
         }
         else if (state === 'go'){
           time = Math.round(performance.now() - green)
+          times.push(time)
+          round.textContent = `Round ${times.length + 1} of 5`
           square.textContent = `Your time: ${time}\nClick to go again!`
           square.appendChild(round)
           state = 'result'
-          times.push(time)
+          if (times.length === 5){
+            state = 'summary'
+            average = 0
+            min = Math.min(...times)
+            for (i of times){
+              average += i
+            }
+            average /= 5
+            square.textContent = `Your times: ${times}\nBest time: ${min}\nAverage time: ${average}\nClick to start again!`
+          }
         }
         else if (state === 'ready'){
+          startRound()
+        }
+        else if (state === 'summary'){
+          times = []
           startRound()
         }
       }
@@ -56,9 +71,15 @@
         square.style.backgroundColor = 'green'
         green = performance.now()
       }
+      function handleKey(e) {
+        if (e === ' '); (!KeyboardEvent.repeat) ;{
+          handleClick()
+        } 
+      }
       square.addEventListener("click", handleClick)
+      square.addEventListener("keydown", handleKey)
       round.className = 'floating-text'
-      round.textContent = `Round ${times.length} of 5`
+      round.textContent = `Round ${times.length + 1} of 5`
       round.style.top = '0%'
       round.style.left = '50%'
       square.appendChild(round)
