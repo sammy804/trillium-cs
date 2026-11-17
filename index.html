@@ -44,7 +44,7 @@
               average += i
             }
             average /= 5
-            square.textContent = `Your times: ${times}\nBest time: ${min}\nAverage time: ${average}\nClick to start again!`
+            square.textContent = `Your times: ${times}\nBest time: ${min} milliseconds\nAverage time: ${average} milliseconds\nClick to start again!`
           }
         }
         else if (state === 'ready'){
@@ -71,13 +71,12 @@
         square.style.backgroundColor = 'green'
         green = performance.now()
       }
-      function handleKey(e) {
-        if (e === ' '); (!KeyboardEvent.repeat) ;{
-          handleClick()
-        } 
-      }
       square.addEventListener("click", handleClick)
-      square.addEventListener("keydown", handleKey)
+      document.addEventListener("keydown", (event) => {
+        if (event.key === " " && !event.repeat)
+          handleClick()
+        console.log('Key pressed: ', event.key)
+      })
       round.className = 'floating-text'
       round.textContent = `Round ${times.length + 1} of 5`
       round.style.top = '0%'
