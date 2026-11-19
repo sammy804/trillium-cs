@@ -32,8 +32,8 @@
         else if (state === 'go'){
           time = Math.round(performance.now() - green)
           times.push(time)
-          round.textContent = `Round ${times.length + 1} of 5\nBest time: ${bestTime} milliseconds`
-          square.textContent = `Your time: ${time}\nClick to go again!`
+          round.textContent = `Round ${times.length + 1} of 5\nPrevious best time: ${bestTime} milliseconds`
+          square.textContent = `Your time: ${time} milliseconds\nClick to go again!`
           square.appendChild(round)
           state = 'result'
           if (times.length === 5){
@@ -45,6 +45,7 @@
             }
             average /= 5
             localStorage.setItem('best', min)
+            bestTime = localStorage.getItem('best')
             square.textContent = `Your times: ${times}\nBest time: ${min} milliseconds\nAverage time: ${average} milliseconds\nClick to start again!`
           }
         }
@@ -53,7 +54,7 @@
         }
         else if (state === 'summary'){
           times = []
-          round.textContent = `Round ${times.length + 1} of 5\nBest time: ${bestTime} milliseconds`
+          round.textContent = `Round ${times.length + 1} of 5\nPrevious best time: ${bestTime} milliseconds`
           startRound()
         }
       }
@@ -79,9 +80,9 @@
           handleClick()
         console.log('Key pressed: ', event.key)
       })
-      var bestTime = localStorage.getItem('best')
+      bestTime = localStorage.getItem('best')
       round.className = 'floating-text'
-      round.textContent = `Round ${times.length + 1} of 5\nBest time: ${bestTime} milliseconds`
+      round.textContent = `Round ${times.length + 1} of 5\nPrevious best time: ${bestTime} milliseconds`
       round.style.top = '0%'
       round.style.left = '50%'
       square.appendChild(round)
